@@ -469,6 +469,9 @@ with open(results_files_path + "/results.txt", 'w') as results_file:
       gt_match = -1
       # load prediction bounding-box
       bb = [ float(x) for x in prediction["bbox"].split() ]
+      
+      print(bb)
+
       for obj in ground_truth_data:
         # look for a class_name match
         if obj["class_name"] == class_name:

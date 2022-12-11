@@ -150,7 +150,7 @@ def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_la
         bbox_color = colors[class_ind]
         bbox_thick = int(0.6 * (image_h + image_w) / 600)
         c1, c2 = (coor[1], coor[0]), (coor[3], coor[2])
-        cv2.rectangle(image, c1, c2, bbox_color, bbox_thick)
+        cv2.rectangle(image, (int(c1[0]), int(c1[1])), (int(c2[0]), int(c2[1])), bbox_color, bbox_thick)
 
         if show_label:
             bbox_mess = '%s: %.2f' % (classes[class_ind], score)

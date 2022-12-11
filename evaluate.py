@@ -12,8 +12,7 @@ from core.config import cfg
 
 flags.DEFINE_string('weights', './checkpoints/yolov4-416',
                     'path to weights file')
-flags.DEFINE_string('framework', 'tf', 'select model type in (tf, tflite, trt)'
-                    'path to weights file')
+flags.DEFINE_string('framework', 'tf', 'select model type in (tf, tflite, trt)')
 flags.DEFINE_string('model', 'yolov4', 'yolov3 or yolov4')
 flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
 flags.DEFINE_integer('size', 416, 'resize images to')
@@ -110,9 +109,9 @@ def main(_argv):
             )
             boxes, scores, classes, valid_detections = [boxes.numpy(), scores.numpy(), classes.numpy(), valid_detections.numpy()]
 
-            # if cfg.TEST.DECTECTED_IMAGE_PATH is not None:
-            #     image_result = utils.draw_bbox(np.copy(image), [boxes, scores, classes, valid_detections])
-            #     cv2.imwrite(cfg.TEST.DECTECTED_IMAGE_PATH + image_name, image_result)
+            if cfg.TEST.DECTECTED_IMAGE_PATH is not None:
+                 image_result = utils.draw_bbox(np.copy(image), [boxes, scores, classes, valid_detections])
+                 cv2.imwrite(cfg.TEST.DECTECTED_IMAGE_PATH + image_name, image_result)
 
             with open(predict_result_path, 'w') as f:
                 image_h, image_w, _ = image.shape
